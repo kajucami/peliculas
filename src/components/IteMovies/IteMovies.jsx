@@ -1,4 +1,4 @@
-import ImageDefault from '../assets/icono_pelicula.png'
+import ImageDefault from '../../assets/icono_pelicula.png'
 const IteMovies = ({  title, year, poster }) => {
 
     let imagen = poster === 'N/A' ? ImageDefault : poster
