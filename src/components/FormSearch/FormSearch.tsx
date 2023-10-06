@@ -2,21 +2,21 @@ import {useState, useContext, useRef, ChangeEvent, FormEvent } from "react";
 import { DataContext } from "../../context/DataContext.tsx";
 
 const FormSearch: React.FC = () => {
-    const [title, setTitle] = useState<string>(""); // Specify the type for title
+    const [title, setTitle] = useState<string>(""); 
     const { setQuery, error } = useContext(DataContext);
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => { // Add event type
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => { 
         e.preventDefault();
         setQuery(title);
     }
 
-    const debounceRef = useRef<number | null>(null); // Specify the type for debounceRef
+    const debounceRef = useRef<number | null>(null); 
 
-    const onQueryChanged = (e: ChangeEvent<HTMLInputElement>) => { // Add event type
-        if (debounceRef.current !== null) // Check for null instead of undefined
+    const onQueryChanged = (e: ChangeEvent<HTMLInputElement>) => { 
+        if (debounceRef.current !== null) 
             clearTimeout(debounceRef.current);
 
-        debounceRef.current = window.setTimeout(() => { // Use window.setTimeout
+        debounceRef.current = window.setTimeout(() => { 
             setTitle(e.target.value);
             setQuery(e.target.value);
         }, 700);
@@ -27,7 +27,7 @@ const FormSearch: React.FC = () => {
             <h1 className="p-2 text-2xl font-black">Buscador de Peliculas</h1>
             <form className="flex flex-col justify-center items-center " onSubmit={handleSubmit}>
                 <input className="w-[60%] p-2 rounded-2xl mb-3 text-center text-stone-400" type="text" placeholder=" Buscar peliculas por titulo"
-                    value={title} // Use value instead of onChange to make it a controlled input
+                    value={title} 
                     onChange={onQueryChanged} />
                 <button className="bg-gray-200 p-4 w-[20%] mb-4 mt-2 text-slate-800 font-semibold hover:bg-slate-800 hover:text-gray-200" type="submit">Buscar</button>
             </form>
